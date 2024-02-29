@@ -7,7 +7,7 @@
 
 Проект реализован с использованием следующих технологий: 
 ----------------------------------------------
-- Java (Core Java, Java EE, Java SE),
+- Java,
 - Spring Framework (Spring Boot, Spring MVC, Spring Data, Spring Security, Thymeleaf),
 - JPA, REST, PostgreSQL, Maven,
 - HTML, CSS.
