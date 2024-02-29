@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person product show</title>
+</head>
+<body>
+<h1><b>WEBBazaar</b></h1>
+<br/>
+<hr/>
+<h2>Подробная информация о товаре:</h2>
+<br/>
+<h3><b th:text="${product.getTitle()} + ' | ' + ${product.getPrice()} + ' руб.'">info</b></h3>
+<br/>
+<div th:each="file : ${files}">
+    <img th:src="@{/person/images/{id}(id=${file.getId()})}" height="150px"/><br/>
+</div>
+<h3>Описание товара: <span th:text="${product.getDescription()}">info</span></h3>
+<h3>Город: <span th:text="${product.getCity()}">info</span></h3>
+<br/>
+<hr/>
+<br/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>person info favorite product</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<h3><b>Избранные товары:</b></h3>
+<br/>
+<br/>
+<div th:if="${favoriteProducts.isEmpty()}">
+    <p> У вас нет избранных товаров.</p>
+</div>
+
+<div th:each="producrt1 : ${favoriteProducts}">
+<!--    <div th:if="${producrt1.isActiveProduct()}"></div>-->
+        <img th:src="@{/product/images/{id}(id=${producrt1.getPreviewImageId()})}" height="100px"/><br/>
+
+        <h3><b th:text="${producrt1.getTitle()} + ' | ' + ${producrt1.getPrice()} + ' руб.'">info</b></h3>
+        <a th:href="@{/home/{id}(id=${producrt1.getId()})}">Подробнее...</a><br/>
+        <br/>
+    <form th:method="POST" th:action="@{/product/remove_favorite_product/{id}(id=${producrt1.getId()})}">
+        <input type="submit" value="Убрать из избранных">
+    </form>
+
+    <br/>
+</div>
+<br/>
+<div th:each="autoProducrt : ${favoriteAutoProducts}">
+    <!--    <div th:if="${producrt1.isActiveProduct()}"></div>-->
+    <img th:src="@{/product/images/{id}(id=${autoProducrt.getPreviewImageId()})}" height="100px"/><br/>
+
+    <h3><b th:text="${autoProducrt.getModel()} + ' | ' + ${autoProducrt.getPrice()} + ' руб.'">info</b></h3>
+    <a th:href="@{/auto_product/{id}(id=${autoProducrt.getId()})}">Подробнее...</a><br/>
+    <br/>
+    <form th:method="POST" th:action="@{/auto_product/remove_favorite_auto_product/{id}(id=${autoProducrt.getId()})}">
+        <input type="submit" value="Убрать из избранных">
+    </form>
+
+    <br/>
+</div>
+<br/>
+<div th:each="realEstateProduct : ${favoriteRealProducts}">
+    <!--    <div th:if="${producrt1.isActiveProduct()}"></div>-->
+    <img th:src="@{/real_estate/images/{id}(id=${realEstateProduct.getPreviewImageId()})}" height="100px"/><br/>
+
+    <h3><b th:text="${realEstateProduct.getTypeOfHousing()} + ' | ' + ${realEstateProduct.getPrice()} + ' руб.'">info</b></h3>
+    <a th:href="@{/real_estate/{id}(id=${realEstateProduct.getId()})}">Подробнее...</a><br/>
+    <br/>
+    <form th:method="POST" th:action="@{/real_estate/remove_favorite_real_estate/{id}(id=${realEstateProduct.getId()})}">
+        <input type="submit" value="Убрать из избранных">
+    </form>
+
+    <br/>
+</div>
+<br/>
+<br/>
+<hr/>
+<a href="/person">Предыдущая страница</a>
+</body>
+</html>

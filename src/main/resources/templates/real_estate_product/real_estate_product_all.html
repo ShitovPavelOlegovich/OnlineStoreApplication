@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Real estate page</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/real_estate}">
+    <label>Поиск недвижимости по типу: </label>
+    <input type="search" name="title" placeholder="Введите тип недвижимости...">
+    <input type="submit" value="Найти"/>
+</form>
+<br/>
+<div th:if="${#lists.isEmpty(searchRealEstateProduct)}">
+    <p>Товар с таким названием не найден</p>
+</div>
+<br/>
+<div th:if="${realEstateProducts.isEmpty()}">
+    <p>Товаров с категорией недвижимость нет в магазине!</p>
+</div>
+<div th:each="realEstate : ${searchRealEstateProduct}">
+    <div th:if="${realEstate.isActiveRealEstate()}">
+        <h4><b th:text="${realEstate.getTypeOfHousing()} + ' | ' + ${realEstate.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/real_estate/images/{id}(id=${realEstate.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/real_estate/{id}(id=${realEstate.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<hr/>
+<div th:each="realEstate : ${realEstateProducts}">
+    <div th:if="${realEstate.isActiveRealEstate()}">
+        <h4><b th:text="${realEstate.getTypeOfHousing()} + ' | ' + ${realEstate.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/real_estate/images/{id}(id=${realEstate.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/real_estate/{id}(id=${realEstate.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

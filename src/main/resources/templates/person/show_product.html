@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>show product</title>
+</head>
+<body>
+<h1><b>WEBBazaar</b></h1>
+<br/>
+<hr/>
+<h2>Подробная информация о товаре:</h2>
+<br/>
+<h3><b th:text="${product.getTitle()} + ' | ' + ${product.getPrice()} + ' руб.'">info</b></h3>
+<br/>
+<div th:each="file : ${files}">
+    <img th:src="@{/person/images/{id}(id=${file.getId()})}" height="150px"/><br/>
+</div>
+<h3>Описание товара: <span th:text="${product.getDescription()}">info</span></h3>
+<h3>Город: <span th:text="${product.getCity()}">info</span></h3>
+<br/>
+<form  th:method="GET" th:action="@{/person/{id}/edit_product(id=${product.getId()})}">
+    <input type="submit" value="Редактировать товар">
+</form>
+<br/>
+<form th:method="DELETE" th:action="@{/person/{id}(id=${product.getId()})}">
+    <input type="submit" value="Удалить продукт">
+</form>
+<br/>
+<br/>
+<!--<div th:if="${!product.isActiveProduct()}"></div>-->
+    <form th:method="POST" th:action="@{/person/product/ban/{id}(id=${product.getId()})}">
+        <input type="submit" value="Снять с продажи">
+    </form>
+
+<br/>
+
+    <form th:method="POST" th:action="@{/person/product/unban/{id}(id=${product.getId()})}">
+        <input type="submit" value="Вернуть в продажу">
+    </form>
+
+<hr/>
+<a href="/person">Предыдущая страница</a>
+<br/>
+<br/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

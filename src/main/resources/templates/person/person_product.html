@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person page product</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<h3>Профиль пользователя:<b th:text="${person.getFirstName()}">info</b></h3>
+<h3>Логин пользователя: <b th:text="${person.getUsername()}">info</b></h3>
+<h3>Номер телефона: <b th:text="${person.getPhoneNumber()}">info</b></h3>
+<br/>
+<div th:if="${products.isEmpty()}">
+    <p> Пользователь не имеет товаров.</p>
+</div>
+<div th:each="producrt1 : ${products}">
+    <div th:if="${producrt1.isActiveProduct()}">
+        <h3><b th:text="${producrt1.getTitle()} + ' | ' + ${producrt1.getPrice()} + ' руб.'">info</b></h3>
+        <img th:src="@{/person/images/{id}(id=${producrt1.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/person/{id}/product/show(id=${producrt1.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<div th:each="autoProduct : ${autoProducts}">
+    <div th:if="${autoProduct.isActiveAutoProduct()}">
+        <h4><b th:text="${autoProduct.getMark()} + ' | ' + ${autoProduct.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/person/images/{id}(id=${autoProduct.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/person/{id}/auto_product/show(id=${autoProduct.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<div th:each="realEstate : ${realEstateProducts}">
+    <div th:if="${realEstate.isActiveRealEstate()}">
+        <h4><b th:text="${realEstate.getTypeOfHousing()} + ' | ' + ${realEstate.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/person/images/{id}(id=${realEstate.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/person/{id}/real_estate/show(id=${realEstate.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

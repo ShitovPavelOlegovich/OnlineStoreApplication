@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new auto product</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<h4><b>Форма для редактирования авто: </b></h4>
+<hr/>
+<form th:method="PATCH" th:action="@{/auto_product/{id}/edit/auto_product(id=${autoProduct.getId()})}" th:object="${autoProduct}" enctype="multipart/form-data">
+    <label for="typeOfCar">Тип автомобиля: </label>
+    <input type="text" th:field="*{typeOfCar}" id="typeOfCar"/>
+    <div style="color:red" th:if="${#fields.hasErrors('typeOfCar')}" th:errors="*{typeOfCar}">typeOfCar Error</div>
+    <br/>
+    <br/>
+    <label for="fabricator">Производитель автомобиля: </label>
+    <input type="text" th:field="*{fabricator}" id="fabricator"/>
+    <div style="color:red" th:if="${#fields.hasErrors('fabricator')}" th:errors="*{fabricator}">fabricator Error</div>
+    <br/>
+    <br/>
+    <label for="mark">Марка: </label>
+    <input type="text" th:field="*{mark}" id="mark"/>
+    <div style="color:red" th:if="${#fields.hasErrors('mark')}" th:errors="*{mark}">mark Error</div>
+    <br/>
+    <br/>
+    <label for="model">Модель: </label>
+    <input type="text" th:field="*{model}" id="model"/>
+    <div style="color:red" th:if="${#fields.hasErrors('model')}" th:errors="*{model}">model Error</div>
+    <br/>
+    <br/>
+    <label for="price">Цена: </label>
+    <input type="number" th:field="*{price}" id="price"/>
+    <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price Error</div>
+    <br/>
+    <br/>
+    <label for="city">Укажите город: </label>
+    <input type="text" th:field="*{city}" id="city"/>
+    <div style="color:red" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">city Error</div>
+    <br/>
+    <br/>
+    <label for="yearOfIssue">Год выпуска автомобиля: </label>
+    <input type="text" th:field="*{yearOfIssue}" id="yearOfIssue"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yearOfIssue')}" th:errors="*{yearOfIssue}">yearOfIssue Error</div>
+    <br/>
+    <br/>
+    <label for="mileage">Пробег: </label>
+    <input type="text" th:field="*{mileage}" id="mileage"/>
+    <div style="color:red" th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}">mileage Error</div>
+    <br/>
+    <br/>
+    <label for="transmission">Коробка передач: </label>
+    <input type="text" th:field="*{transmission}" id="transmission"/>
+    <div style="color:red" th:if="${#fields.hasErrors('transmission')}" th:errors="*{transmission}">transmission Error</div>
+    <br/>
+    <br/>
+    <label for="driveUnit">Привод: </label>
+    <input type="text" th:field="*{driveUnit}" id="driveUnit"/>
+    <div style="color:red" th:if="${#fields.hasErrors('driveUnit')}" th:errors="*{driveUnit}">driveUnit Error</div>
+    <br/>
+    <br/>
+    <label for="engineType">Тип двигателя: </label>
+    <input type="text" th:field="*{engineType}" id="engineType"/>
+    <div style="color:red" th:if="${#fields.hasErrors('engineType')}" th:errors="*{engineType}">engineType Error</div>
+    <br/>
+    <br/>
+    <label for="power">Мощность двигателя, л.с: </label>
+    <input type="text" th:field="*{power}" id="power"/>
+    <div style="color:red" th:if="${#fields.hasErrors('power')}" th:errors="*{power}">power Error</div>
+    <br/>
+    <br/>
+    <label for="fuelConsumption">Потребление топлива: </label>
+    <input type="text" th:field="*{fuelConsumption}" id="fuelConsumption"/>
+    <div style="color:red" th:if="${#fields.hasErrors('fuelConsumption')}" th:errors="*{fuelConsumption}">fuelConsumption Error</div>
+    <br/>
+    <br/>
+    <label for="ownersOfPTS">Владельцы по ПТС: </label>
+    <input type="number" th:field="*{ownersOfPTS}" id="ownersOfPTS"/>
+    <div style="color:red" th:if="${#fields.hasErrors('ownersOfPTS')}" th:errors="*{ownersOfPTS}">ownersOfPTS Error</div>
+    <br/>
+    <br/>
+    <label for="state">Состояние: </label>
+    <input type="text" th:field="*{state}" id="state"/>
+    <div style="color:red" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">state Error</div>
+    <br/>
+    <br/>
+    <label for="typeBody">Тип кузова: </label>
+    <input type="text" th:field="*{typeBody}" id="typeBody"/>
+    <div style="color:red" th:if="${#fields.hasErrors('typeBody')}" th:errors="*{typeBody}">typeBody Error</div>
+    <br/>
+    <br/>
+    <label for="countOfSeats">Количество мест: </label>
+    <input type="number" th:field="*{countOfSeats}" id="countOfSeats"/>
+    <div style="color:red" th:if="${#fields.hasErrors('countOfSeats')}" th:errors="*{countOfSeats}">countOfSeats Error</div>
+    <br/>
+    <br/>
+    <label for="trunkVolume">Объем багажника, л: </label>
+    <input type="number" th:field="*{trunkVolume}" id="trunkVolume"/>
+    <div style="color:red" th:if="${#fields.hasErrors('trunkVolume')}" th:errors="*{trunkVolume}">trunkVolume Error</div>
+    <br/>
+    <br/>
+    <label for="steeringWheel">Руль: </label>
+    <input type="text" th:field="*{steeringWheel}" id="steeringWheel"/>
+    <div style="color:red" th:if="${#fields.hasErrors('steeringWheel')}" th:errors="*{steeringWheel}">steeringWheel Error</div>
+    <br/>
+    <br/>
+    <label for="descriptionAuto">Описание автомобиля: </label>
+    <input type="text" th:field="*{descriptionAuto}" id="descriptionAuto"/>
+    <div style="color:red" th:if="${#fields.hasErrors('descriptionAuto')}" th:errors="*{descriptionAuto}">descriptionAuto Error</div>
+    <br/>
+    <br/>
+    <label for="file1">Первое фото: </label>
+    <input type="file"  id="file1" name="file1"/>
+    <br/>
+    <br/>
+    <label for="file2">Второе фото: </label>
+    <input type="file" id="file2" name="file2"/>
+    <br/>
+    <br/>
+    <label for="file3">Третье фото: </label>
+    <input type="file" id="file3" name="file3"/>
+    <br/>
+    <br/>
+    <input type="submit" value="Редактировать"/>
+</form>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/person}">
+    <input type="submit" value="Вернуться в профиль">
+</form>
+</body>
+</html>

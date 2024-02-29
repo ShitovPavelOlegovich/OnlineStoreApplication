@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new real estate</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<h4><b>Форма для создания недвижимости: </b></h4>
+<hr/>
+<form th:method="POST" th:action="@{/real_estate/new/real_estate}" th:object="${realEstateProduct}" enctype="multipart/form-data">
+    <label for="typeOfHousing">Тип недвижимости: </label>
+    <input type="text" th:field="*{typeOfHousing}" id="typeOfHousing"/>
+    <div style="color:red" th:if="${#fields.hasErrors('typeOfHousing')}" th:errors="*{typeOfHousing}">typeOfHousing Error</div>
+    <br/>
+    <br/>
+    <label for="countOfRooms">Количество комнат: </label>
+    <input type="number" th:field="*{countOfRooms}" id="countOfRooms"/>
+    <div style="color:red" th:if="${#fields.hasErrors('countOfRooms')}" th:errors="*{countOfRooms}">countOfRooms Error</div>
+    <br/>
+    <br/>
+    <label for="price">Цена: </label>
+    <input type="number" th:field="*{price}" id="price"/>
+    <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price Error</div>
+    <br/>
+    <br/>
+    <label for="totalArea">Общая площадь,м²: </label>
+    <input type="number" th:field="*{totalArea}" id="totalArea"/>
+    <div style="color:red" th:if="${#fields.hasErrors('totalArea')}" th:errors="*{totalArea}">totalArea Error</div>
+    <br/>
+    <br/>
+    <label for="floor">Этаж: </label>
+    <input type="number" th:field="*{floor}" id="floor"/>
+    <div style="color:red" th:if="${#fields.hasErrors('floor')}" th:errors="*{floor}">floor Error</div>
+    <br/>
+    <br/>
+    <label for="sellers">Продавец: </label>
+    <input type="text" th:field="*{sellers}" id="sellers"/>
+    <div style="color:red" th:if="${#fields.hasErrors('sellers')}" th:errors="*{sellers}">sellers Error</div>
+    <br/>
+    <br/>
+    <label for="repair">Ремонт: </label>
+    <input type="text" th:field="*{repair}" id="repair"/>
+    <div style="color:red" th:if="${#fields.hasErrors('repair')}" th:errors="*{repair}">repair Error</div>
+    <br/>
+    <br/>
+    <label for="kitchenOfArea">Площадь кухни,м²: </label>
+    <input type="number" th:field="*{kitchenOfArea}" id="kitchenOfArea"/>
+    <div style="color:red" th:if="${#fields.hasErrors('kitchenOfArea')}" th:errors="*{kitchenOfArea}">kitchenOfArea Error</div>
+    <br/>
+    <br/>
+    <label for="balconyOrLoggia">Балкон или лоджия: </label>
+    <input type="text" th:field="*{balconyOrLoggia}" id="balconyOrLoggia"/>
+    <div style="color:red" th:if="${#fields.hasErrors('balconyOrLoggia')}" th:errors="*{balconyOrLoggia}">balconyOrLoggia Error</div>
+    <br/>
+    <br/>
+    <label for="heightOfCeiling">Высота потолков,м: </label>
+    <input type="number" th:field="*{heightOfCeiling}" id="heightOfCeiling"/>
+    <div style="color:red" th:if="${#fields.hasErrors('heightOfCeiling')}" th:errors="*{heightOfCeiling}">heightOfCeiling Error</div>
+    <br/>
+    <br/>
+    <label for="bathroom">Санузел: </label>
+    <input type="text" th:field="*{bathroom}" id="bathroom"/>
+    <div style="color:red" th:if="${#fields.hasErrors('bathroom')}" th:errors="*{bathroom}">bathroom Error</div>
+    <br/>
+    <br/>
+    <label for="windowHouse">Окна: </label>
+    <input type="text" th:field="*{windowHouse}" id="windowHouse"/>
+    <div style="color:red" th:if="${#fields.hasErrors('windowHouse')}" th:errors="*{windowHouse}">windowHouse Error</div>
+    <br/>
+    <br/>
+    <label for="yearTheBuilt">Год постройки дома: </label>
+    <input type="text" th:field="*{yearTheBuilt}" id="yearTheBuilt"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yearTheBuilt')}" th:errors="*{yearTheBuilt}">yearTheBuilt Error</div>
+    <br/>
+    <br/>
+    <label for="floorInTheHouse">Этажей в доме: </label>
+    <input type="number" th:field="*{floorInTheHouse}" id="floorInTheHouse"/>
+    <div style="color:red" th:if="${#fields.hasErrors('floorInTheHouse')}" th:errors="*{floorInTheHouse}">floorInTheHouse Error</div>
+    <br/>
+    <br/>
+    <label for="typeHouse">Тип дома: </label>
+    <input type="text" th:field="*{typeHouse}" id="typeHouse"/>
+    <div style="color:red" th:if="${#fields.hasErrors('typeHouse')}" th:errors="*{typeHouse}">typeHouse Error</div>
+    <br/>
+    <br/>
+    <label for="elevator">Лифт: </label>
+    <input type="text" th:field="*{elevator}" id="elevator"/>
+    <div style="color:red" th:if="${#fields.hasErrors('elevator')}" th:errors="*{elevator}">elevator Error</div>
+    <br/>
+    <br/>
+    <label for="parking">Парковка: </label>
+    <input type="text" th:field="*{parking}" id="parking"/>
+    <div style="color:red" th:if="${#fields.hasErrors('parking')}" th:errors="*{parking}">parking Error</div>
+    <br/>
+    <br/>
+    <label for="description">Описание недвижимости: </label>
+    <input type="text" th:field="*{description}" id="description"/>
+    <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description Error</div>
+    <br/>
+    <br/>
+    <label for="city">Город: </label>
+    <input type="text" th:field="*{city}" id="city"/>
+    <div style="color:red" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">city Error</div>
+    <br/>
+    <br/>
+    <label for="file1">Первое фото: </label>
+    <input type="file"  id="file1" name="file1"/>
+    <br/>
+    <br/>
+    <label for="file2">Второе фото: </label>
+    <input type="file" id="file2" name="file2"/>
+    <br/>
+    <br/>
+    <label for="file3">Третье фото: </label>
+    <input type="file" id="file3" name="file3"/>
+    <br/>
+    <br/>
+    <input type="submit" value="Создать"/>
+</form>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/person}">
+    <input type="submit" value="Вернуться в профиль">
+</form>
+</body>
+</html>

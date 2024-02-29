@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<h3><b>Страница администратора</b></h3>
+<br/>
+<table border="1">
+    <tr>
+        <th>Пользователь</th>
+        <th>Номер телефона</th>
+        <th>Активность</th>
+        <th>Заблокировать</th>
+        <th>Разблокировать</th>
+        <th>Роль пользователя</th>
+        <th>Назначить Администратором</th>
+        <th>Назначить Пользователем</th>
+        <th>Подробная информация</th>
+        <th>Удалить пользователя</th>
+    </tr>
+    <tr th:each="person : ${people}">
+        <th th:text="${person.getUsername()}"></th>
+        <th th:text="${person.getPhoneNumber()}"></th>
+        <th th:text="${person.isActive()}"></th>
+        <th>
+            <form th:method="POST" th:action="@{/admin/person/ban/{id}(id=${person.getId()})}" >
+                    <input type="submit" value="Заблокировать">
+            </form></th>
+        <th>
+            <form th:method="POST" th:action="@{/admin/person/unban/{id}(id=${person.getId()})}" >
+                <input type="submit" value="Разблокировать">
+            </form></th>
+        <th th:text="${person.getRoles()}"></th>
+        <th>
+            <form th:method="POST" th:action="@{/admin/person/role/admin/{id}(id=${person.getId()})}">
+                <input type="submit" value="Назначить Администратором">
+            </form>
+        </th>
+        <th>
+            <form th:method="POST" th:action="@{/admin/person/role/user/{id}(id=${person.getId()})}">
+                <input type="submit" value="Назначить Пользователем">
+            </form>
+        </th>
+        <th><a th:href="@{/admin/{id}/person(id=${person.getId()})}">Подробнее о пользователе</a></th>
+        <th>
+            <form th:method="DELETE" th:action="@{/admin/{id}/delete/person(id=${person.getId()})}">
+                <input type="submit" value="Удалить пользователя">
+            </form>
+        </th>
+    </tr>
+</table>
+<br/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+<hr/>
+</body>
+</html>

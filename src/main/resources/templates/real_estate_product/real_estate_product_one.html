@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Real estate one</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+
+<form th:method="POST" th:action="@{/real_estate/add_favorite_real_estate/{id}(id=${realEstateProduct.getId()})}">
+    <input type="submit" value="Добавить товар в избранное">
+</form>
+
+<br/>
+
+<form th:method="POST" th:action="@{/real_estate/remove_favorite_real_estate/{id}(id=${realEstateProduct.getId()})}">
+    <input type="submit" value="Убрать из избранных">
+</form>
+<br/>
+<br/>
+<h4><b th:text="${realEstateProduct.getTypeOfHousing()} + ' | ' + ${realEstateProduct.getPrice()} + ' руб.'">title</b></h4>
+<br/>
+<div th:each="file : ${files}">
+    <img th:src="@{/real_estate/images/{id}(id=${file.getId()})}" height="150px"/><br/>
+</div>
+<h3><b>Тип недвижимости: </b><span th:text="${realEstateProduct.getTypeOfHousing()}">info</span></h3>
+<h3><b>Количество комнат: </b><span th:text="${realEstateProduct.getCountOfRooms()}">info</span></h3>
+<h3><b>Цена: </b><span th:text="${realEstateProduct.getPrice()}">info</span></h3>
+<h3><b>Общая площадь,м²: </b><span th:text="${realEstateProduct.getTotalArea()}">info</span></h3>
+<h3><b>Этаж: </b><span th:text="${realEstateProduct.getFloor()}">info</span></h3>
+<h3><b>Продавец: </b><span th:text="${realEstateProduct.getSellers()}">info</span></h3>
+<h3><b>Ремонт: </b><span th:text="${realEstateProduct.getRepair()}">info</span></h3>
+<h3><b>Площадь кухни,м²: </b><span th:text="${realEstateProduct.getKitchenOfArea()}">info</span></h3>
+<h3><b>Балкон или лоджия: </b><span th:text="${realEstateProduct.getBalconyOrLoggia()}">info</span></h3>
+<h3><b>Высота потолков,м: </b><span th:text="${realEstateProduct.getHeightOfCeiling()}">info</span></h3>
+<h3><b>Санузел: </b><span th:text="${realEstateProduct.getBathroom()}">info</span></h3>
+<h3><b>Окна: </b><span th:text="${realEstateProduct.getWindowHouse()}">info</span></h3>
+<h3><b>Год постройки дома: </b><span th:text="${realEstateProduct.getYearTheBuilt()}">info</span></h3>
+<h3><b>Этажей в доме: </b><span th:text="${realEstateProduct.getFloorInTheHouse()}">info</span></h3>
+<h3><b>Тип дома: </b><span th:text="${realEstateProduct.getTypeHouse()}">info</span></h3>
+<h3><b>Лифт: </b><span th:text="${realEstateProduct.getElevator()}">info</span></h3>
+<h3><b>Парковка: </b><span th:text="${realEstateProduct.getParking()}">info</span></h3>
+<h3><b>Описание недвижимости: </b><span th:text="${realEstateProduct.getDescription()}">info</span></h3>
+<h3><b>Город: </b><span th:text="${realEstateProduct.getCity()}">info</span></h3>
+<h3><b>Владелец: </b><i><a th:href="@{/real_estate/person/{id}(id=${person.getId()})}" th:text="${person.getUsername()}">info</a></i></h3>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info product ban</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<h3>Список товаров снятых с продажи:</h3>
+<br/>
+<br/>
+    <div th:each="product1 : ${productsBan}">
+        <img th:src="@{/person/images/{id}(id=${product1.getPreviewImageId()})}" height="100px"/><br/>
+        <h3><b th:text="${product1.getTitle()} + ' | ' + ${product1.getPrice()} + ' руб.'">info</b></h3>
+        <a th:href="@{/person/{id}/product(id=${product1.getId()})}">Подробнее...</a>
+    </div>
+<br/>
+<br/>
+<div th:each="autoProduct : ${autoProductsBan}">
+    <img th:src="@{/auto_product/images/{id}(id=${autoProduct.getPreviewImageId()})}" height="100px"/><br/>
+    <h3><b th:text="${autoProduct.getModel()} + ' | ' + ${autoProduct.getPrice()} + ' руб.'">info</b></h3>
+    <a th:href="@{/person/{id}/auto_product(id=${autoProduct.getId()})}">Подробнее...</a>
+</div>
+<br/>
+<div th:each="realEstate : ${realEstateBan}">
+    <img th:src="@{/real_estate/images/{id}(id=${realEstate.getPreviewImageId()})}" height="100px"/><br/>
+    <h3><b th:text="${realEstate.getTypeOfHousing()} + ' | ' + ${realEstate.getPrice()} + ' руб.'">info</b></h3>
+    <a th:href="@{/person/{id}/real_estate(id=${realEstate.getId()})}">Подробнее...</a>
+</div>
+<br/>
+<hr/>
+<br/>
+<a href="/person">Предыдущая страница</a>
+
+</body>
+</html>

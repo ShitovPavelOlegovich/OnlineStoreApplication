@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Auto product page</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<div th:if="${autoProducts.isEmpty()}">
+    <p>Товаров с категорией авто нет в магазине!</p>
+</div>
+<form th:method="GET" th:action="@{/auto_product}">
+    <label>Поиск авто по марке: </label>
+    <input type="search" name="title" placeholder="Введите марку авто...">
+    <input type="submit" value="Найти"/>
+</form>
+<br/>
+<form th:method="GET" th:action="@{/auto_product}">
+    <label>Поиск авто по модели: </label>
+    <input type="search" name="titleModel" placeholder="Введите модель авто...">
+    <input type="submit" value="Найти"/>
+</form>
+<div th:if="${#lists.isEmpty(searchAutoProduct) or #lists.isEmpty(searchAutoProductFoModel)}">
+    <p>Товар с таким названием не найден</p>
+</div>
+<div th:each="autoProduct : ${searchAutoProduct}">
+    <div th:if="${autoProduct.isActiveAutoProduct()}">
+        <h4><b th:text="${autoProduct.getMark()} + ' | ' + ${autoProduct.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/auto_product/images/{id}(id=${autoProduct.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/auto_product/{id}(id=${autoProduct.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<div th:each="autoProduct : ${searchAutoProductFoModel}">
+    <div th:if="${autoProduct.isActiveAutoProduct()}">
+        <h4><b th:text="${autoProduct.getModel()} + ' | ' + ${autoProduct.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/auto_product/images/{id}(id=${autoProduct.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/auto_product/{id}(id=${autoProduct.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<hr/>
+<div th:each="autoProduct : ${autoProducts}">
+    <div th:if="${autoProduct.isActiveAutoProduct()}">
+        <h4><b th:text="${autoProduct.getMark()} + ' | ' + ${autoProduct.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/auto_product/images/{id}(id=${autoProduct.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/auto_product/{id}(id=${autoProduct.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

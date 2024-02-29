@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Auto product one</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+
+<form th:method="POST" th:action="@{/auto_product/add_favorite_auto_product/{id}(id=${autoProduct.getId()})}">
+    <input type="submit" value="Добавить товар в избранное">
+</form>
+
+<br/>
+
+<form th:method="POST" th:action="@{/auto_product/remove_favorite_auto_product/{id}(id=${autoProduct.getId()})}">
+    <input type="submit" value="Убрать из избранных">
+</form>
+<br/>
+<br/>
+<h4><b th:text="${autoProduct.getMark()} + ' | ' + ${autoProduct.getPrice()} + ' руб.'">title</b></h4>
+<br/>
+<div th:each="file : ${files}">
+    <img th:src="@{/home/images/{id}(id=${file.getId()})}" height="150px"/><br/>
+</div>
+<h3><b>Тип автомобиля: </b><span th:text="${autoProduct.getTypeOfCar()}">info</span></h3>
+<h3><b>Производитель автомобиля: </b><span th:text="${autoProduct.getFabricator()}">info</span></h3>
+<h3><b>Марка: </b><span th:text="${autoProduct.getMark()}">info</span></h3>
+<h3><b>Модель: </b><span th:text="${autoProduct.getModel()}">info</span></h3>
+<h3><b>Цена: </b><span th:text="${autoProduct.getPrice()}">info</span></h3>
+<h3><b>Год выпуска автомобиля: </b><span th:text="${autoProduct.getYearOfIssue()}">info</span></h3>
+<h3><b>Пробег: </b><span th:text="${autoProduct.getMileage()}">info</span></h3>
+<h3><b>Коробка передач: </b><span th:text="${autoProduct.getTransmission()}">info</span></h3>
+<h3><b>Привод: </b><span th:text="${autoProduct.getDriveUnit()}">info</span></h3>
+<h3><b>Тип двигателя: </b><span th:text="${autoProduct.getEngineType()}">info</span></h3>
+<h3><b>Мощность двигателя, л.с: </b><span th:text="${autoProduct.getPower()}">info</span></h3>
+<h3><b>Потребление топлива: </b><span th:text="${autoProduct.getFuelConsumption()}">info</span></h3>
+<h3><b>Владельцы по ПТС: </b><span th:text="${autoProduct.getOwnersOfPTS()}">info</span></h3>
+<h3><b>Состояние: </b><span th:text="${autoProduct.getState()}">info</span></h3>
+<h3><b>Тип кузова: </b><span th:text="${autoProduct.getTypeBody()}">info</span></h3>
+<h3><b>Количество мест: </b><span th:text="${autoProduct.getCountOfSeats()}">info</span></h3>
+<h3><b>Объем багажника, л: </b><span th:text="${autoProduct.getTrunkVolume()}">info</span></h3>
+<h3><b>Руль: </b><span th:text="${autoProduct.getSteeringWheel()}">info</span></h3>
+<h3><b>Описание автомобиля: </b><span th:text="${autoProduct.getDescriptionAuto()}">info</span></h3>
+<h3><b>Город: </b><span th:text="${autoProduct.getCity()}">info</span></h3>
+<h3><b>Владелец: </b><i><a th:href="@{/auto_product/person/{id}(id=${person.getId()})}" th:text="${person.getUsername()}">info</a></i></h3>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

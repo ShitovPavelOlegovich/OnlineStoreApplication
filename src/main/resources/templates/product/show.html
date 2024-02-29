@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>show</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+
+<h2><b th:text="${product.getTitle()} + ' | ' + ${product.getPrice()} + ' руб.'">info</b></h2>
+<br/>
+<div th:each="file : ${files}">
+    <img th:src="@{/home/images/{id}(id=${file.getId()})}" height="150px"/><br/>
+</div>
+<h3><b>Описание товара: </b><span th:text="${product.getDescription()}">info</span></h3>
+<h3><b>Город: </b><span th:text="${product.getCity()}">info</span></h3>
+<h3><b>Имя владельца: </b><i><a th:href="@{/home/person/{id}(id=${person.getId()})}" th:text="${person.getUsername()}">info</a></i></h3>
+<br/>
+
+
+<div th:unless="${product.getId() == product.getOwnerPerson().getProducts()}">
+    <form th:method="POST" th:action="@{/product/add_favorite_product/{id}(id=${product.getId()})}">
+        <input type="submit" value="Добавить товар в избранное">
+    </form>
+    <br/>
+    <form th:method="POST" th:action="@{/product/remove_favorite_product/{id}(id=${product.getId()})}">
+        <input type="submit" value="Убрать из избранных">
+    </form>
+</div>
+<br/>
+<br/>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info one product</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<div th:if="${products.isEmpty()}">
+    <p>Товаров пока нет в магазине!</p>
+</div>
+<form th:method="GET" th:action="@{/product}">
+    <label>Поиск товара</label>
+    <input type="search" name="title" placeholder="Введите название товара...">
+    <input type="submit" value="Найти"/>
+</form>
+<div th:if="${#lists.isEmpty(searchProduct)}">
+    <p>Товар с таким названием не найден</p>
+</div>
+<div th:each="product1 : ${searchProduct}">
+    <div th:if="${product1.isActiveProduct()}">
+        <h4><b th:text="${product1.getTitle()} + ' | ' + ${product1.getPrice()} + ' руб.'">title</b></h4>
+        <img th:src="@{/product/images/{id}(id=${product1.getPreviewImageId()})}" height="150px"/><br/>
+        <a th:href="@{/product/{id}(id=${product1.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<hr/>
+<div th:each="product : ${products}">
+    <div th:if="${product.isActiveProduct()}">
+        <h4><b th:text="${product.getTitle()} + ' | ' + ${product.getPrice()} + ' руб.'">title</b></h4><br/>
+        <img th:src="@{/product/images/{id}(id=${product.getPreviewImageId()})}" height="150px"/><br/>
+
+        <a th:href="@{/product/{id}(id=${product.getId()})}">Подробнее...</a><br/>
+    </div>
+</div>
+<br/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>

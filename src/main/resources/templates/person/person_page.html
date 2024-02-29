@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person page</title>
+</head>
+<body>
+<h3><b>WEBBazaar</b></h3>
+<br/>
+<hr/>
+<h3>Профиль пользователя: <b th:text="${person.getFirstName()}">info</b></h3>
+<h3>Логин пользователя: <b th:text="${person.getUsername()}">info</b></h3>
+<br/>
+<br/>
+<form th:method="GET" th:action="@{/person/info/product/ban}">
+    <input type="submit" value="Товары снятые с продажи">
+</form>
+<br/>
+<form th:method="GET" th:action="@{/product/info/favorite_product}">
+    <input type="submit" value="Избранные товары">
+</form>
+<br/>
+<div th:if="${products.isEmpty()}">
+    <p> У вас нет товаров.</p>
+</div>
+<div th:each="producrt1 : ${products}">
+    <div th:if="${producrt1.isActiveProduct()}">
+        <h3><b th:text="${producrt1.getTitle()} + ' | ' + ${producrt1.getPrice()} + ' руб.'">info</b></h3>
+        <img th:src="@{/person/images/{id}(id=${producrt1.getPreviewImageId()})}" height="100px"/><br/>
+        <a th:href="@{/person/{id}/product(id=${producrt1.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<br/>
+<div th:each="autoProduct : ${autoProducts}">
+    <div th:if="${autoProduct.isActiveAutoProduct()}">
+        <h3><b th:text="${autoProduct.getModel()} + ' | ' + ${autoProduct.getPrice()} + ' руб.'">info</b></h3>
+        <img th:src="@{/person/images/{id}(id=${autoProduct.getPreviewImageId()})}" height="100px"/><br/>
+        <a th:href="@{/person/{id}/auto_product(id=${autoProduct.getId()})}">Подробнее...</a>
+    </div>
+</div>
+<div th:each="realEstate : ${realEstateProducts}">
+    <div th:if="${realEstate.isActiveRealEstate()}">
+        <h3><b th:text="${realEstate.getTypeOfHousing()} + ' | ' + ${realEstate.getPrice()} + ' руб.'">info</b></h3>
+        <img th:src="@{/person/images/{id}(id=${realEstate.getPreviewImageId()})}" height="100px"/><br/>
+
+        <a th:href="@{/person/{id}/real_estate(id=${realEstate.getId()})}">Подробнее...</a>
+    </div>
+</div>
+
+<br/>
+<hr/>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <form  th:method="GET" th:action="@{/person/{id}/edit(id=${person.getId()})}">
+            <input type="submit" value="Редактировать профиль">
+        </form>
+        <br/>
+        <form th:method="GET" th:action="@{/person/new}">
+            <input type="submit" value="Создать продукт">
+        </form>
+    </div>
+<br/>
+<form th:method="GET" th:action="@{/home}">
+    <input type="submit" value="Вернуться на главную страницу">
+</form>
+</body>
+</html>
